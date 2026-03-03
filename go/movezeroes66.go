@@ -1,6 +1,6 @@
 package main
 
-// https://leetcode.com/problems/move-zeroes/solutions/127441/move-zeroes-by-leetcode-yszs/
+// https://leetcode.com/problems/move-zeroes/description/
 // 283. Move Zeroes
 func moveZeroes(nums []int) {
 	i := 0
