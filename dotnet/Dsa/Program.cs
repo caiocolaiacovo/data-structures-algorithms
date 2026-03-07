@@ -14,6 +14,7 @@ public class Program
         // BinarySearch704.MainBinarySearch();
         // BinaryTree.MainBinaryTree();
         // InvertBinaryTree226.MainInvertBinaryTree();
-        BinaryTree.MainBinaryTree2();
+        // BinaryTree.MainBinaryTree2();
+        Graph.MainGraph();
     }    
 }
