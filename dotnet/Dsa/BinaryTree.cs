@@ -32,7 +32,35 @@ namespace Dsa
 
             expected output: a,b,d,e,g,c,f
             */
-            Console.WriteLine(DFSStack(a));
+            // Console.WriteLine(DFSStack(a));
+            Console.WriteLine(DFSRecursive(a));
+        }
+
+        public static string DFSRecursive(Node root)
+        {
+            var visited = new List<string>();
+            Action<Node?>? func = null;
+            
+            func = (Node? root) =>
+            {
+                if (root == null)
+                {
+                    return;
+                }
+
+                visited.Add(root.SKey);
+                if (root.Left != null)
+                {
+                    func!(root.Left);
+                }
+                if (root.Right != null)
+                {
+                    func!(root.Right);
+                }
+            };
+
+            func(root);
+            return string.Join(",", visited);
         }
 
         public static string DFSStack(Node root)
