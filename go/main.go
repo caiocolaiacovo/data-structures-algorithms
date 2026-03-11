@@ -48,6 +48,32 @@ func main() {
 		| /
 		4
 
-		expected output: 4 (the biggest "island")
+		expected output: 4 (the largest "island")
 	*/
+	largestComponent(graph)
+
+	/*
+		3
+
+		...8
+		...|
+		4--6--5
+		...|
+		...7
+
+		1--2
+
+		expected output: 5 (the largest "island")
+	*/
+	graph = map[int][]int{
+		3: {},
+		4: {'6'},
+		6: {'4', '5', '7', '8'},
+		8: {'6'},
+		7: {'6'},
+		5: {'6'},
+		1: {'2'},
+		2: {'1'},
+	}
+	largestComponent(graph)
 }

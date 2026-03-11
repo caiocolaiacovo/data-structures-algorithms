@@ -95,3 +95,33 @@ func dfsRecursive(graph map[int][]int, node int, visited map[int]struct{}) bool 
 
 	return true
 }
+
+func largestComponent(graph map[int][]int) {
+	visited := make(map[int]struct{})
+	largest := -1
+
+	for k := range graph {
+		count := dfsCount(graph, k, visited)
+
+		if count > largest {
+			largest = count
+		}
+	}
+
+	fmt.Printf("largest count: %d\n", largest)
+}
+
+func dfsCount(graph map[int][]int, node int, visited map[int]struct{}) int {
+	if _, wasVisited := visited[node]; wasVisited == true {
+		return 0
+	}
+
+	visited[node] = struct{}{}
+	count := 1
+
+	for _, n := range graph[node] {
+		count += dfsCount(graph, n, visited)
+	}
+
+	return count
+}
