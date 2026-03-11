@@ -76,4 +76,53 @@ func main() {
 		2: {'1'},
 	}
 	largestComponent(graph)
+
+	/*
+		  w
+		 / \
+		x   \
+		|    v
+		y   /
+		 \ /
+		  z
+
+		  expected output: 2 (the edge between w-v and v-z)
+	*/
+	edges := [][]string{
+		{"w", "x"},
+		{"x", "y"},
+		{"z", "y"},
+		{"z", "v"},
+		{"w", "v"},
+	}
+	fmt.Printf("shortest path: %d\n", shortestPath(edges, "w", "z"))
+
+	/*
+		m
+		|
+		n
+		|
+		o --- t
+		|
+		p
+		|
+		q
+		|
+		r
+		|
+		s
+
+		expected output: 6
+	*/
+
+	edges = [][]string{
+		{"m", "n"},
+		{"n", "o"},
+		{"o", "p"},
+		{"p", "q"},
+		{"t", "o"},
+		{"r", "q"},
+		{"r", "s"},
+	}
+	fmt.Printf("shortest path: %d\n", shortestPath(edges, "m", "s"))
 }
