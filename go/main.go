@@ -150,4 +150,29 @@ func main() {
 	}
 	fmt.Printf("island count: %d\n", islandCount(matrix)) //expected output: 1
 
+	matrix = [][]string{
+		{"w", "l", "w", "w", "w"},
+		{"w", "l", "w", "w", "w"},
+		{"w", "w", "w", "l", "w"},
+		{"w", "w", "l", "l", "w"},
+		{"l", "w", "w", "l", "l"},
+		{"l", "l", "w", "w", "w"},
+	}
+	fmt.Printf("minimum island: %d\n", minimumIslandSize(matrix)) //expected output: 2
+
+	matrix = [][]string{
+		{"l", "w", "w", "l", "w"},
+		{"l", "w", "w", "l", "l"},
+		{"w", "l", "w", "l", "w"},
+		{"w", "w", "w", "w", "w"},
+		{"w", "w", "l", "l", "l"},
+	}
+	fmt.Printf("minimum island: %d\n", minimumIslandSize(matrix)) //expected output: 1
+
+	matrix = [][]string{
+		{"l", "l", "l"},
+		{"l", "l", "l"},
+		{"l", "l", "l"},
+	}
+	fmt.Printf("minimum island: %d\n", minimumIslandSize(matrix)) //expected output: 9
 }

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 	"unsafe"
 )
 
@@ -246,4 +247,54 @@ func dfsIsland(matrix [][]string, row int, col int, visited map[string]struct{})
 	}
 
 	return 1
+}
+
+// time complexity: O(r*c) since we need to visit all cells in the matrix
+// space complexity: O(r*c) in worst case when the matrix is full of land, all cells will be pushed into the stack (all cells needed to be added on the Set)
+func minimumIslandSize(matrix [][]string) int {
+	visited := map[string]struct{}{}
+	minSize := math.MaxInt
+
+	for r := range matrix {
+		for c := range matrix[0] {
+			size := dfsMinimumIsland(matrix, r, c, visited)
+			if size != 0 && size < minSize {
+				minSize = size
+			}
+		}
+	}
+
+	return minSize
+}
+
+func dfsMinimumIsland(matrix [][]string, row int, col int, visited map[string]struct{}) int {
+	if matrix[row][col] == "w" {
+		return 0
+	}
+
+	position := fmt.Sprintf("%d,%d", row, col)
+	if _, wasVisited := visited[position]; wasVisited == true {
+		return 0
+	}
+
+	visited[position] = struct{}{}
+	count := 1
+	maxRightPosition := len(matrix[row]) - 1
+	if col < maxRightPosition {
+		//can move right
+		count += dfsMinimumIsland(matrix, row, col+1, visited)
+	}
+
+	maxDownPosition := len(matrix) - 1
+	if row < maxDownPosition {
+		//can move down
+		count += dfsMinimumIsland(matrix, row+1, col, visited)
+	}
+
+	if col > 0 {
+		//can move left
+		count += dfsMinimumIsland(matrix, row, col-1, visited)
+	}
+
+	return count
 }
