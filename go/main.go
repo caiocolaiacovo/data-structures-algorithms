@@ -125,4 +125,29 @@ func main() {
 		{"r", "s"},
 	}
 	fmt.Printf("shortest path: %d\n", shortestPath(edges, "m", "s"))
+
+	matrix := [][]string{
+		{"w", "l", "w", "w", "l", "w"},
+		{"l", "l", "w", "w", "l", "w"},
+		{"w", "l", "w", "w", "w", "w"},
+		{"w", "w", "w", "l", "l", "w"},
+		{"w", "l", "w", "l", "l", "w"},
+		{"w", "w", "w", "w", "w", "w"},
+	}
+	fmt.Printf("island count: %d\n", islandCount(matrix)) //expected output: 4
+
+	matrix = [][]string{
+		{"w", "w"},
+		{"w", "w"},
+		{"w", "w"},
+	}
+	fmt.Printf("island count: %d\n", islandCount(matrix)) //expected output: 0
+
+	matrix = [][]string{
+		{"l", "l", "l"},
+		{"l", "l", "l"},
+		{"l", "l", "l"},
+	}
+	fmt.Printf("island count: %d\n", islandCount(matrix)) //expected output: 1
+
 }

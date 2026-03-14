@@ -188,3 +188,62 @@ func createGraphFromEdges(edges [][]string) map[string][]string {
 
 	return graph
 }
+
+/*
+
+i 	[         j
+		[w,   l,   w,   w,   l,   w]
+		[l,   l,   w,   w,   l,   w]
+		[w,   l,   w,   w,   w,   w]
+		[w,   w,   w,   l,   l,   w]
+		[w,   l,   w,   l,   l,   w]
+		[w,   w,   w,   w,   w,   w]
+	]
+*/
+// time complexity: O(r*c) since we need to visit all cells in the matrix
+// space complexity: O(r*c) in worst case when the matrix is full of land, all cells will be pushed into the stack (all cells needed to be added on the Set)
+func islandCount(matrix [][]string) int {
+	visited := map[string]struct{}{}
+	count := 0
+
+	for row := range matrix {
+		for col := range matrix[row] {
+			count += dfsIsland(matrix, row, col, visited)
+		}
+	}
+
+	return count
+}
+
+func dfsIsland(matrix [][]string, row int, col int, visited map[string]struct{}) int {
+	if matrix[row][col] == "w" { //water
+		return 0
+	}
+
+	//land
+	current := fmt.Sprintf("%d,%d", row, col)
+	if _, wasVisited := visited[current]; wasVisited == true {
+		return 0
+	}
+
+	visited[current] = struct{}{}
+
+	maxRightPosition := len(matrix[row]) - 1
+	if col < maxRightPosition {
+		//can move right
+		dfsIsland(matrix, row, col+1, visited)
+	}
+
+	maxDownPosition := len(matrix) - 1
+	if row < maxDownPosition {
+		//can move down
+		dfsIsland(matrix, row+1, col, visited)
+	}
+
+	if col > 0 {
+		//can move left
+		dfsIsland(matrix, row, col-1, visited)
+	}
+
+	return 1
+}
