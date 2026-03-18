@@ -15,6 +15,7 @@ public class Program
         // BinaryTree.MainBinaryTree();
         // InvertBinaryTree226.MainInvertBinaryTree();
         // BinaryTree.MainBinaryTree2();
-        Graph.MainGraph();
+        // Graph.MainGraph();
+        OrderExercise.MainOrderExercise();
     }    
 }
