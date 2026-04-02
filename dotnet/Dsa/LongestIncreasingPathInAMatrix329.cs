@@ -12,21 +12,22 @@ public static class LongestIncreasingPathInAMatrix329
             new int[]{8,2,0}
         };
 
-        var result = LongestIncreasingPath(matrix);
+        var result = LongestIncreasingPathRecursive(matrix);
         Console.WriteLine($"Longest Increasing Path: {result}");
     }
 
     // Time Complexity: O(m*n) where m is the number of rows and n is the number of columns in the matrix
-    // Space Complexity: O(m*n) where m is the number of rows and n is the number of columns in the matrix (in the worst case, when all elements are increasing)
-    public static int LongestIncreasingPath(int[][] matrix)
+    // Space Complexity: O(m*n) where m is the number of rows and n is the number of columns in the matrix
+    public static int LongestIncreasingPathRecursive(int[][] matrix)
     {
+        var dp = new Dictionary<string, int>();
         var maxCount = 0;
 
         for (int r = 0; r < matrix.Length; r++)
         {
             for (int c = 0; c < matrix[0].Length; c++)
             {
-                var count = Dfs(matrix, r, c, -1);
+                var count = Dfs(matrix, dp, r, c, -1);
 
                 if (count > maxCount)
                 {
@@ -38,49 +39,29 @@ public static class LongestIncreasingPathInAMatrix329
         return maxCount;
     }
 
-    public static int LongestIncreasingPathInterative(int[][] matrix)
+    public static int Dfs(int[][] matrix, Dictionary<string, int> dp, int r, int c, int previous)
     {
-        //TODO: implement it
-        return 0;
-    }
-
-    public static int Dfs(int[][] matrix, int r, int c, int previous)
-    {
-        var current = matrix[r][c];
-        if (current <= previous)
+        if (r < 0 || r == matrix.Length ||
+            c < 0 || c == matrix[0].Length ||
+            matrix[r][c] <= previous)
         {
             return 0;
         }
-
-        var sizeRight = 0;
-        var sizeBottom = 0;
-        var sizeLeft = 0;
-        var sizeUp = 0;
-
-        //can move right?
-        if (c < matrix[r].Length - 1)
+        var key = $"{r}:{c}";
+        if (dp.ContainsKey(key))
         {
-            sizeRight = Dfs(matrix, r, c + 1, current);
+            return dp[key];
         }
 
-        //can move bottom?
-        if (r < matrix.Length - 1)
-        {
-            sizeBottom = Dfs(matrix, r + 1, c, current);
-        }
+        var current = matrix[r][c];
+        var size = 1;
+        
+        size = Math.Max(size, 1 + Dfs(matrix, dp, r + 1, c, current));
+        size = Math.Max(size, 1 + Dfs(matrix, dp, r - 1, c, current));
+        size = Math.Max(size, 1 + Dfs(matrix, dp, r, c + 1, current));
+        size = Math.Max(size, 1 + Dfs(matrix, dp, r, c - 1, current));
+        dp.Add(key, size);
 
-        //can move left?
-        if (c > 0)
-        {
-            sizeLeft = Dfs(matrix, r, c - 1, current);
-        }
-
-        //can move up?
-        if (r > 0)
-        {
-            sizeUp = Dfs(matrix, r - 1, c, current);
-        }
-
-        return 1 + Math.Max(sizeRight, Math.Max(sizeBottom, Math.Max(sizeLeft, sizeUp)));
+        return size;
     }
 }
