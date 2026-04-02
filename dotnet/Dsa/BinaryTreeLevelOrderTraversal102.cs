@@ -1,6 +1,6 @@
-
 using Dsa;
 
+// https://leetcode.com/problems/binary-tree-level-order-traversal/description/
 public class BinaryTreeLevelOrderTraversal102
 {
     public static void MainBinaryTreeLevelOrderTraversal()
@@ -28,6 +28,9 @@ public class BinaryTreeLevelOrderTraversal102
         var result3 = LevelOrder(null);
         Console.WriteLine(string.Join(", ", result3.Select(x => $"[{string.Join(", ", x)}]")));
     }
+
+    // Time Complexity: O(n) where n is the number of nodes in the tree
+    // Space Complexity: O(n) where n is the number of nodes in the tree (in the worst case, when the tree is completely unbalanced)
     public static IList<IList<int>> LevelOrder(TreeNode root)
     {
         IList<IList<int>> finalList = new List<IList<int>>();

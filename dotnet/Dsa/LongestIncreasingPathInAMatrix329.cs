@@ -1,5 +1,6 @@
 namespace Dsa;
 
+// https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
 public static class LongestIncreasingPathInAMatrix329
 {
     public static void MainLongestIncreasingPath()
@@ -14,6 +15,9 @@ public static class LongestIncreasingPathInAMatrix329
         var result = LongestIncreasingPath(matrix);
         Console.WriteLine($"Longest Increasing Path: {result}");
     }
+
+    // Time Complexity: O(m*n) where m is the number of rows and n is the number of columns in the matrix
+    // Space Complexity: O(m*n) where m is the number of rows and n is the number of columns in the matrix (in the worst case, when all elements are increasing)
     public static int LongestIncreasingPath(int[][] matrix)
     {
         var maxCount = 0;
