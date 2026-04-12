@@ -52,6 +52,13 @@ public class OrderExercise
 {
     public static void MainOrderExercise()
     {
+        var gcCollectionCount0 = GC.CollectionCount(0);
+        var gcCollectionCount1 = GC.CollectionCount(1);
+        var gcCollectionCount2 = GC.CollectionCount(2);
+
+        Console.WriteLine("Press Enter to start processing orders...");
+        Console.ReadLine();
+        Console.WriteLine("Processing orders...");
         var categories = new List<string>
         {
             "Roupas",
@@ -93,6 +100,15 @@ public class OrderExercise
             }
         }
         Console.WriteLine("Processing time: {0} ms", stopWatch.ElapsedMilliseconds);
+
+        var gcCollectionCount0After = GC.CollectionCount(0);
+        var gcCollectionCount1After = GC.CollectionCount(1);
+        var gcCollectionCount2After = GC.CollectionCount(2);
+        Console.WriteLine("GC Collections - Gen 0: {0}, Gen 1: {1}, Gen 2: {2}", 
+            gcCollectionCount0After - gcCollectionCount0, 
+            gcCollectionCount1After - gcCollectionCount1, 
+            gcCollectionCount2After - gcCollectionCount2);
+        Thread.Sleep(10000);
     }
 }
 
