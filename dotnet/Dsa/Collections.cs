@@ -106,6 +106,15 @@ namespace Dsa
             Console.WriteLine(blockingCollection.IsAddingCompleted);
             // data = blockingCollection.Take(); -> throws error
 
+            var priorityQueue = new PriorityQueue<string, int>();
+            priorityQueue.Enqueue("Teste", 200);
+            priorityQueue.Enqueue("Teste2", 10);
+            priorityQueue.Enqueue("Teste3", 70);
+            Console.WriteLine("PriorityQueue -------------");
+            Console.WriteLine(priorityQueue.Dequeue());
+            Console.WriteLine(priorityQueue.Dequeue());
+            Console.WriteLine(priorityQueue.Dequeue());
+
             // TODO:
             // ConcurrentQueue
             // ConcurrentStack

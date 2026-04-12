@@ -4,7 +4,7 @@ public class Program
 {
     public static void Main()
     {
-        // Collections.MainCollections();
+        Collections.MainCollections();
         // RangeSumQuery303.MainRangeSum();
         // Threads.MainThreads();
         // BinarySearch704.MainBinarySearch();
@@ -19,6 +19,6 @@ public class Program
         // BinaryTreeLevelOrderTraversal102.MainBinaryTreeLevelOrderTraversal();
         // CloneGraph133.MainCloneGraph();
         //[[7,7,5],[2,4,6],[8,2,0]]
-        LongestIncreasingPathInAMatrix329.MainLongestIncreasingPath();
+        // LongestIncreasingPathInAMatrix329.MainLongestIncreasingPath();
     }    
 }
