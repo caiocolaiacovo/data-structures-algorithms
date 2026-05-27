@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace Dsa
 {
@@ -10,6 +11,16 @@ namespace Dsa
         public static void MainCollections()
         {
             Console.WriteLine("Collections -----------------------");
+
+            /*
+            Base for most of the collections. It uses only one continuous block of memory. An array of int, every position has 4 bytes,
+            allowing rapid index-based access with a simple calculation (index * 4 bytes). Not thread-safe.
+
+            Time complexity:
+                - O(1) for access
+            */
+            var a = new int[5] { -2, 18, 6, 44, 1 };
+            var b = a.Append(8); // DON'T add, it creates a NEW array with the new element
 
             /* 
             List is a generic collection that stores elements in a dynamic list.
