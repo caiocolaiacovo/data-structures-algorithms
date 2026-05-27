@@ -6,7 +6,6 @@ public class Program
     {
         Collections.MainCollections();
         RangeSumQuery303.MainRangeSum();
-        BinarySearch704.MainBinarySearch();
         BinaryTree.MainBinaryTree();
         InvertBinaryTree226.MainInvertBinaryTree();
         BinaryTree.MainBinaryTree2();
