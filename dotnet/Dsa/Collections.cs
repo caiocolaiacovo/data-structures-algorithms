@@ -18,18 +18,18 @@ namespace Dsa
             Not thread-safe.
             
             Time complexity:
-                - O(1) for direct access at any position and insertion at the end
-                - O(n) for insertion or removal at intermediate positions
+                - O(1) for direct access at any position
+                - O(1) for insertion at the end (amortized, because it may need to resize the internal array)
+                - O(n) for insertion or removal at intermediate positions (elements after the index must shift)
             */
             var list = new List<string>();
-            list.Add("Teste");
+            list.Add("Teste"); // add element to the end of the list
             list.Add("Teste2");
-            list[1].ToString();
+            list.Insert(index: 1, "Teste3");
             Console.WriteLine(list[0]);
 
             /*
-            Basically, it represents a HashMap, but it is older and not generic. It can store keys and values of any type, but this can lead to runtime type issues. Not thread-safe.
-            Note: Hashtable is considered a legacy collection and is generally not recommended for new development. Instead, it's better to use Dictionary<TKey, TValue> for most scenarios.
+            LEGACY: Basically, it represents a HashMap, but it is older and not generic. It can store keys and values of any type, but this can lead to runtime type issues. Not thread-safe.
             
             Time complexity: 
             -   O(1) for insertion, removal, and access operations, but O(n) in the worst case due to collisions.
