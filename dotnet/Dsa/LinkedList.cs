@@ -85,13 +85,79 @@ public class LinkedList
 
         return head1;
     }
+
+    // Time complexity: O(n) -> it needs to go thru the entire list
+    // Space complexity: O(1) -> no extra space is allocated
+    public static int SumListIterative(Node? head)
+    {
+        var current = head;
+        var total = 0;
+
+        while (current != null)
+        {
+            total += Convert.ToInt32(current.Value);
+            current = current.Next;
+        }
+
+        return total;
+    }
+
+    // Time complexity: O(n) -> it needs to go thru the entire list
+    // Space complexity: O(n) -> every call needs to be added on the stack
+    public static int SumListRecursive(Node? head)
+    {
+        static int func(Node? head)
+        {
+            if (head == null)
+            {
+                return 0;
+            }
+
+            return Convert.ToInt32(head.Value) + func(head.Next);
+        }
+
+        return func(head);
+    }
+
+    // Time complexity: O(n)
+    // Space complexity: O(1)
+    public static Node ReverseListIterative(Node head)
+    {
+        Node? previous = null;
+        var current = head;
+
+        while (current != null)
+        {
+            var next = current.Next;
+            current.Next = previous;
+            previous = current;
+            current = next;
+        }
+
+        return previous!;
+    }
+    //  <- a <- b <- c <- d
+    //                    p    c    n
+
+    // Time complexity: O(n)
+    // Space complexity: O(n) -> all calls are on the stack
+    public static Node? ReverseListRecursive(Node head)
+    {
+        static Node? func(Node? previous, Node? current)
+        {
+            if (current == null)
+            {
+                return previous;
+            }
+
+            var next = current.Next;
+            current.Next = previous;
+            previous = current;
+            current = next;
+
+            return func(previous, current);
+        }
+
+        return func(null, head);
+    }
 }
-
-// 
-//                t   c1
-// a -> b -> c -> d -> e -> f
-// 
-//              c2
-// x -> y -> z
-
-// a -> x -> b -> y -> c -> z -> d

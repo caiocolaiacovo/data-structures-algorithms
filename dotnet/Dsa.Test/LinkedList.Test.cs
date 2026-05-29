@@ -193,4 +193,175 @@ public class LinkedListTest
         Assert.Equal(three, head.Next.Next.Next);
         Assert.Null(head.Next.Next.Next.Next);
     }
+
+    [Fact]
+    public void Should_sum_list1()
+    {
+        var a = new LinkedList.Node("2");
+        var b = new LinkedList.Node("8");
+        var c = new LinkedList.Node("3");
+        var d = new LinkedList.Node("-1");
+        var e = new LinkedList.Node("7");
+        a.Next = b;
+        b.Next = c;
+        c.Next = d;
+        d.Next = e;
+        var expectedTotal = 19;
+
+        var totalIterative = LinkedList.SumListIterative(a);
+        var totalRecursive = LinkedList.SumListRecursive(a);
+
+        Assert.Equal(expectedTotal, totalIterative);
+        Assert.Equal(expectedTotal, totalRecursive);
+    }
+
+    [Fact]
+    public void Should_sum_list2()
+    {
+        var x = new LinkedList.Node("38");
+        var y = new LinkedList.Node("4");
+        x.Next = y;
+        var expectedTotal = 42;
+
+        var totalIterative = LinkedList.SumListIterative(x);
+        var totalRecursive = LinkedList.SumListRecursive(x);
+
+        Assert.Equal(expectedTotal, totalIterative);
+        Assert.Equal(expectedTotal, totalRecursive);
+    }
+
+    [Fact]
+    public void Should_sum_list3()
+    {
+        var x = new LinkedList.Node("38");
+        var expectedTotal = 38;
+
+        var totalIterative = LinkedList.SumListIterative(x);
+        var totalRecursive = LinkedList.SumListRecursive(x);
+
+        Assert.Equal(expectedTotal, totalIterative);
+        Assert.Equal(expectedTotal, totalRecursive);
+    }
+
+    [Fact]
+    public void Should_sum_list4()
+    {
+        var expectedTotal = 0;
+
+        var totalIterative = LinkedList.SumListIterative(null);
+        var totalRecursive = LinkedList.SumListRecursive(null);
+
+        Assert.Equal(expectedTotal, totalIterative);
+        Assert.Equal(expectedTotal, totalRecursive);
+    }
+
+    [Fact]
+    public void Should_reverse_list_iterative1()
+    {
+        // a -> b -> c -> d -> e -> f
+        var a = new LinkedList.Node("a");
+        var b = new LinkedList.Node("b");
+        var c = new LinkedList.Node("c");
+        var d = new LinkedList.Node("d");
+        var e = new LinkedList.Node("e");
+        var f = new LinkedList.Node("f");
+        a.Next = b;
+        b.Next = c;
+        c.Next = d;
+        d.Next = e;
+        e.Next = f;
+
+        var head = LinkedList.ReverseListIterative(a);
+
+        // f -> e -> d -> c -> b -> a
+        Assert.Equal(f, head);
+        Assert.Equal(e, head.Next);
+        Assert.Equal(d, head.Next.Next);
+        Assert.Equal(c, head.Next.Next.Next);
+        Assert.Equal(b, head.Next.Next.Next.Next);
+        Assert.Equal(a, head.Next.Next.Next.Next.Next);
+        Assert.Null(head.Next.Next.Next.Next.Next.Next);
+    }
+
+    [Fact]
+    public void Should_reverse_list_iterative2()
+    {
+        // x -> y
+        var x = new LinkedList.Node("x");
+        var y = new LinkedList.Node("y");
+        x.Next = y;
+
+        var head = LinkedList.ReverseListIterative(x);
+
+        // y -> x
+        Assert.Equal(y, head);
+        Assert.Equal(x, head.Next);
+        Assert.Null(head.Next.Next);
+    }
+
+    [Fact]
+    public void Should_reverse_list_iterative3()
+    {
+        var p = new LinkedList.Node("p");
+
+        var head = LinkedList.ReverseListIterative(p);
+
+        Assert.Equal(p, head);
+        Assert.Null(head.Next);
+    }
+
+    [Fact]
+    public void Should_reverse_list_recursive1()
+    {
+        // a -> b -> c -> d -> e -> f
+        var a = new LinkedList.Node("a");
+        var b = new LinkedList.Node("b");
+        var c = new LinkedList.Node("c");
+        var d = new LinkedList.Node("d");
+        var e = new LinkedList.Node("e");
+        var f = new LinkedList.Node("f");
+        a.Next = b;
+        b.Next = c;
+        c.Next = d;
+        d.Next = e;
+        e.Next = f;
+
+        var head = LinkedList.ReverseListRecursive(a);
+
+        // f -> e -> d -> c -> b -> a
+        Assert.Equal(f, head);
+        Assert.Equal(e, head.Next);
+        Assert.Equal(d, head.Next.Next);
+        Assert.Equal(c, head.Next.Next.Next);
+        Assert.Equal(b, head.Next.Next.Next.Next);
+        Assert.Equal(a, head.Next.Next.Next.Next.Next);
+        Assert.Null(head.Next.Next.Next.Next.Next.Next);
+    }
+
+    [Fact]
+    public void Should_reverse_list_recursive2()
+    {
+        // x -> y
+        var x = new LinkedList.Node("x");
+        var y = new LinkedList.Node("y");
+        x.Next = y;
+
+        var head = LinkedList.ReverseListRecursive(x);
+
+        // y -> x
+        Assert.Equal(y, head);
+        Assert.Equal(x, head.Next);
+        Assert.Null(head.Next.Next);
+    }
+
+    [Fact]
+    public void Should_reverse_list_recursive3()
+    {
+        var p = new LinkedList.Node("p");
+
+        var head = LinkedList.ReverseListRecursive(p);
+
+        Assert.Equal(p, head);
+        Assert.Null(head.Next);
+    }
 }
