@@ -2,6 +2,10 @@ namespace Dsa;
 
 public class CountPathsDp
 {
+    // r = number of rows
+    // c = number of columns
+    // Time complexity: O(r*c) -> it will have the r * c different call numbers (0,0 - 0,1 - 1,0...) so once it is stored there is no need to recompute it
+    // Space complexity: O(r*c) -> the memoization will contain r * c different entries (0,0 - 0,1 - 1,0...)
     public static int CountPathsWithDp(string[][] grid)
     {
         var memo = new Dictionary<string, int>();
