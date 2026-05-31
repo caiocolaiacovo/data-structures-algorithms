@@ -1,4 +1,4 @@
-# DataStructures
+# Data Structures & Algorithms
 
 A comprehensive study project exploring data structures and algorithms implementations in **C#** and **Go**.
 
@@ -12,9 +12,9 @@ This repository contains implementations of fundamental data structures and algo
 Located in `dotnet/Dsa/`, this section includes:
 
 #### Arrays & Strings
-- **Binary Search** (`BinarySearch704.cs`) - O(log n) search implementation [LeetCode 704](https://leetcode.com/problems/binary-search/)
+- **Binary Search** (`BinarySearch704.cs`) - Search implementation [LeetCode 704](https://leetcode.com/problems/binary-search/)
 - **Search Insert Position** (`SearchInsertPosition35.cs`) - Binary search variant to find insert position [LeetCode 35](https://leetcode.com/problems/search-insert-position/)
-- **Find Peak Element** (`FindPeakElement162.cs`) - Binary search to find an element greater than its neighbors [LeetCode 162](https://leetcode.com/problems/find-peak-element/)
+- **Find Peak Element** (`FindPeakElement162.cs`) - Find an element greater than its neighbors [LeetCode 162](https://leetcode.com/problems/find-peak-element/)
 - **Range Sum Query** (`RangeSumQuery303.cs`) - Prefix sum optimization [LeetCode 303](https://leetcode.com/problems/range-sum-query-immutable/)
 
 #### Binary Trees
@@ -41,10 +41,15 @@ Located in `dotnet/Dsa/`, this section includes:
   - Sum of values (iterative and recursive)
   - Reverse list (iterative and recursive)
 
+#### Backtracking
+- **Backtracking** (`Backtracking.cs`) - Generate all possible strings of length n from a set of letters
+- **Letter Combinations of a Phone Number** (`LetterCombinationsPhoneNumber17.cs`) - All letter combinations from phone keypad digits [LeetCode 17](https://leetcode.com/problems/letter-combinations-of-a-phone-number/)
+
 #### Dynamic Programming
 - **Fibonacci** (`FibonacciDp.cs`) - Fibonacci number calculation
-  - Naive recursive: O(2^n) time
-  - Memoized: O(n) time, O(n) space
+  - Naive recursive
+  - Memoized
+- **Count Paths** (`CountPathsDp.cs`) - Count all paths from top-left to bottom-right in a grid with obstacles, using memoization
 
 #### Collections & Concurrency
 - **Collections** (`Collections.cs`) - Comparison of .NET collections
