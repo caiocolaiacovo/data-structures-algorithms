@@ -101,4 +101,27 @@ public class BinaryTreeTest
 
         Assert.Equal(expected, outputRecursive);
     }
+
+    [Fact]
+    public void Should_traverse_bfs()
+    {
+        var a = new Node("a");
+        var b = new Node("b");
+        var c = new Node("c");
+        var d = new Node("d");
+        var e = new Node("e");
+        var f = new Node("f");
+        var g = new Node("g");
+        a.Left = b;
+        a.Right = c;
+        b.Left = d;
+        b.Right = e;
+        c.Right = f;
+        e.Left = g;
+        var expected = "a,b,c,d,e,f,g";
+
+        var outputRecursive = BinaryTree.BreadthFirstValues(a);
+
+        Assert.Equal(expected, outputRecursive);
+    }
 }

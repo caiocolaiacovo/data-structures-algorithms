@@ -4,7 +4,7 @@ namespace Dsa
     {
         // Time complexity:
         //  O(n + n) -> O(n)
-        //      - O(n) need to go thru all the tree nodes
+        //      - O(n) need to go thru all the tree nodes only once (no double visit)
         //      - O(n) -> visited list join
         // Space complexity: 
         //  O(n + n) -> O(n)
@@ -38,7 +38,7 @@ namespace Dsa
 
         // Time complexity:
         //  O(n + n) -> O(n)
-        //      - O(n) need to go thru all the tree nodes
+        //      - O(n) need to go thru all the tree nodes only once (no double visit)
         //      - O(n) -> visited list join
         // Space complexity: 
         //  O(n + n) -> O(n)
@@ -68,6 +68,7 @@ namespace Dsa
             return string.Join(",", result);
         }
 
+        // Time and space complexity: same as previous
         public static string DFSRecursivePostOrder(Node root)
         {
             var result = new List<string>();
@@ -90,6 +91,7 @@ namespace Dsa
             return string.Join(",", result);
         }
 
+        // Time and space complexity: same as previous
         public static string DFSRecursiveInOrder(Node root)
         {
             var result = new List<int>();
@@ -115,26 +117,11 @@ namespace Dsa
 
         public static void MainBinaryTree()
         {
-            var a = new Node("a");
-            var b = new Node("b");
-            var c = new Node("c");
-            var d = new Node("d");
-            var e = new Node("e");
-            var f = new Node("f");
-            var g = new Node("g");
+            
+            
 
-            a.Left = b;
-            a.Right = c;
-            b.Left = d;
-            b.Right = e;
-            c.Right = f;
-            e.Left = g;
-
-            var result = BreadthFirstValues(a);
-            Console.WriteLine(string.Join(",", result));
-
-            var found = TreeIncludesRecursive(a, "f");
-            Console.WriteLine("Found? " + found);
+            // var found = TreeIncludesRecursive(a, "f");
+            // Console.WriteLine("Found? " + found);
 
             var a2 = new Node(3);
             var b2 = new Node(11);
@@ -208,92 +195,11 @@ namespace Dsa
             Console.WriteLine($"Is balanced: {TreeIsBalanced(a5)}");
         }
 
-        // Depth-First Search (DFS) -> Busca em profundidade: caminha pela esquerda o mais fundo possível, volta node pai, direita
-        // Complexidade de tempo:
-        // n = número de nodes
-        // O(n) -> cada node será visitado e adicionado uma única vez na stack (não teremos uma double visit)
-        // Complexidade de espaço:
-        // O(n) -> será criada uma stack com no máximo n nodes
-        public static List<string> DepthFirstValues(Node root)
-        {
-            var stack = new Stack<Node>();
-            stack.Push(root);
-            var result = new List<string>();
-
-            while (stack.Count > 0)
-            {
-                var current = stack.Pop();
-                result.Add(current.SKey);
-
-                if (current.Right != null)
-                {
-                    stack.Push(current.Right);
-                }
-
-                if (current.Left != null)
-                {
-                    stack.Push(current.Left);
-                }
-            }
-
-            return result;
-        }
-
-        /*
-            a
-           / \
-          b   c
-         / \   \
-        d   e   f
-           /
-          g
-
-        expected output: a,b,d,e,c,f
-        */
-
-        // Depth-First Search (DFS) -> Busca em profundidade: caminha pela esquerda o mais fundo possível, volta node pai, direita
-        // Complexidade de tempo: 
-        // n = número de nodes
-        // O(n) -> cada node será visitado e adicionado a call stack apenas uma única vez (não teremos uma double visit)
-        // Complexidade de espaço:
-        // O(n) -> no pior caso, a stack de chamadas recursivas pode chegar a n, caso a árvore seja completamente desbalanceada
-        public static List<string> DepthFirstValuesRecursive(Node? root)
+        public static string BreadthFirstValues(Node? root)
         {
             if (root == null)
             {
-                return new List<string>{};
-            }
-
-            var valuesLeft = DepthFirstValuesRecursive(root.Left);
-            var valuesRight = DepthFirstValuesRecursive(root.Right);
-            var final = new List<string> { root.SKey };
-            final.AddRange(valuesLeft);
-            final.AddRange(valuesRight);
-            return final;
-        }
-
-        /*
-            a
-           / \
-          b   c
-         / \   \
-        d   e   f
-           /
-          g
-        
-        expected output: a,b,c,d,e,f,g
-        */
-        // Breadth-First Search (BFS) -> Busca em largura: caminha por todos os nodes do mesmo nível antes de seguir para o próximo
-        // Complexidade de tempo:
-        // n = número de nodes
-        // O(n) -> cada node será visitado e adicionado apenas uma única vez na queue (não teremos uma double visit)
-        // Complexidade de espaço:
-        // O(n) -> no pior caso, a queue pode conter n nodes, caso a árvore seja completamente desbalanceada
-        public static List<string> BreadthFirstValues(Node? root)
-        {
-            if (root == null)
-            {
-                return new List<string>();
+                return string.Empty;
             }
 
             var result = new List<string>();
@@ -317,7 +223,7 @@ namespace Dsa
                 result.Add(current.SKey);
             }
 
-            return result.ToList();
+            return string.Join(",", result);
         }
 
         /*
