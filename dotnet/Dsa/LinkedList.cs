@@ -160,4 +160,48 @@ public class LinkedList
 
         return func(null, head);
     }
+
+    // Not optimal for performance, and the constraint is that the list can't have duplicated values
+    // Time complexity: O(n) -> it needs to go tru all the nodes to find the loop
+    // Space complexity: O(n + n) -> O(n) -> stores all the nodes on the call stack + the visited hashset
+    public static bool HasCycle(Node head)
+    {
+        var visited = new HashSet<string>();
+
+        bool cycle(Node node)
+        {
+            if (node == null)
+            {
+                return false;
+            }
+
+            if (visited.Contains(node.Value))
+            {
+                return true;
+            }
+
+            visited.Add(node.Value);
+            return cycle(node.Next);
+        }
+
+        return cycle(head);
+    }
+
+    public static bool HasCycleFastSlow(Node? head)
+    {
+        var slow = head;
+        var fast = head;
+
+        while (fast != null && fast.Next != null)
+        {
+            slow = slow.Next;
+            fast = fast.Next.Next;
+            if (slow == fast)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

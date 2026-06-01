@@ -364,4 +364,53 @@ public class LinkedListTest
         Assert.Equal(p, head);
         Assert.Null(head.Next);
     }
+
+    [Fact]
+    public void Should_detect_a_cycle1()
+    {
+        var a = new LinkedList.Node("3");
+        var b = new LinkedList.Node("2");
+        var c = new LinkedList.Node("0");
+        var d = new LinkedList.Node("-4");
+        a.Next = b;
+        b.Next = c;
+        c.Next = d;
+        d.Next = b;
+        var expected = true;
+
+        var result1 = LinkedList.HasCycle(a);
+        var result2 = LinkedList.HasCycleFastSlow(a);
+
+        Assert.Equal(expected, result1);
+        Assert.Equal(expected, result2);
+    }
+
+    [Fact]
+    public void Should_detect_a_cycle2()
+    {
+        var a = new LinkedList.Node("1");
+        var b = new LinkedList.Node("2");
+        a.Next = b;
+        b.Next = a;
+        var expected = true;
+
+        var result1 = LinkedList.HasCycle(a);
+        var result2 = LinkedList.HasCycleFastSlow(a);
+
+        Assert.Equal(expected, result1);
+        Assert.Equal(expected, result2);
+    }
+
+    [Fact]
+    public void Should_detect_a_cycle3()
+    {
+        var a = new LinkedList.Node("1");
+        var expected = false;
+
+        var result1 = LinkedList.HasCycle(a);
+        var result2 = LinkedList.HasCycleFastSlow(a);
+
+        Assert.Equal(expected, result1);
+        Assert.Equal(expected, result2);
+    }
 }
