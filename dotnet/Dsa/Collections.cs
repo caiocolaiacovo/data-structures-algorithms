@@ -13,7 +13,7 @@ namespace Dsa
             Console.WriteLine("Collections -----------------------");
 
             /*
-            Base for most of the collections. It uses only one continuous block of memory. An array of int, every position has 4 bytes,
+            Base for most of the collections. It uses only one contiguous block of memory. An array of int, every position has 4 bytes,
             allowing rapid index-based access with a simple calculation (index * 4 bytes). Not thread-safe.
 
             Time complexity:
@@ -21,6 +21,24 @@ namespace Dsa
             */
             var a = new int[5] { -2, 18, 6, 44, 1 };
             var b = a.Append(8); // DON'T add, it creates a NEW array with the new element
+
+            /*
+            Collection of multiple nodes, allocated in a non-contiguous block of memory.
+            The nodes are allocated individually, and each node have a pointer to the next one.
+            Allows efficiente insertions/deletions when compared to Arrays. Not thread-safe.
+
+            Time complexity:
+                - O(1) for head/tail operations and insertion/deletion given a node reference
+                - O(n) for sequential access
+            */
+            var ll = new LinkedList<string>(new string[] { "one", "three", "four" });
+            var one = ll.Find("one");
+            ll.AddAfter(one!, "two");
+            foreach (var item in ll)
+            {
+                Console.WriteLine(item);
+            }
+            
 
             /* 
             List is a generic collection that stores elements in a dynamic list.
