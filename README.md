@@ -40,6 +40,7 @@ Located in `dotnet/Dsa/`, this section includes:
   - Zipper two lists (interleave nodes)
   - Sum of values (iterative and recursive)
   - Reverse list (iterative and recursive)
+  - Cycle detection (HashSet approach and Floyd's fast/slow pointer)
 
 #### Backtracking
 - **Backtracking** (`Backtracking.cs`) - Generate all possible strings of length n from a set of letters
@@ -51,10 +52,15 @@ Located in `dotnet/Dsa/`, this section includes:
   - Memoized
 - **Count Paths** (`CountPathsDp.cs`) - Count all paths from top-left to bottom-right in a grid with obstacles, using memoization
 
+#### Codility
+- **Arr List Len** (`CodilityArrListLen.cs`) - Find the length of a linked list encoded as an array [Codility Training 7](https://app.codility.com/programmers/trainings/7/arr_list_len/)
+- **Count Bounded Slices** (`CodilityCountBoundedSlices.cs`) - Count slices where max−min ≤ K [Codility Training 7](https://app.codility.com/programmers/trainings/7/count_bounded_slices/)
+
 #### Collections & Concurrency
 - **Collections** (`Collections.cs`) - Comparison of .NET collections
-  - List, Dictionary, HashSet, Stack, Queue
+  - LinkedList, List, Dictionary, HashSet, Stack, Queue
   - Sorted collections (SortedDictionary, SortedSet)
+  - Ordered collections (OrderedDictionary)
   - Thread-safe collections (ConcurrentDictionary, BlockingCollection)
   - PriorityQueue
 
