@@ -8,7 +8,7 @@ public class Program
         RangeSumQuery303.MainRangeSum();
         BinaryTree.MainBinaryTree();
         InvertBinaryTree226.MainInvertBinaryTree();
-        BinaryTree.MainBinaryTree2();
+        // BinaryTree.MainBinaryTree2();
         Graph.MainGraph();
         BinaryTreeInorder94.MainBinaryTreeInorder();
         MaximumDepthOfBinaryTree104.MainMaximumDepthOfBinaryTree();

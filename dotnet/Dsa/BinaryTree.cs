@@ -1,47 +1,20 @@
-using System.Linq;
-
 namespace Dsa
 {
     public class BinaryTree
     {
-        public static void MainBinaryTree2()
-        {
-            var a = new Node("a");
-            var b = new Node("b");
-            var c = new Node("c");
-            var d = new Node("d");
-            var e = new Node("e");
-            var f = new Node("f");
-            var g = new Node("g");
-
-            a.Left = b;
-            a.Right = c;
-            b.Left = d;
-            b.Right = e;
-            c.Right = f;
-            e.Left = g;
-
-            /*
-                a
-               / \
-              b   c
-             / \   \
-            d   e   f
-               /
-              g
-
-            expected output: a,b,d,e,g,c,f
-            */
-            // Console.WriteLine(DFSStack(a));
-            Console.WriteLine(DFSRecursive(a));
-        }
-
-        public static string DFSRecursive(Node root)
+        // Time complexity:
+        //  O(n + n) -> O(n)
+        //      - O(n) need to go thru all the tree nodes
+        //      - O(n) -> visited list join
+        // Space complexity: 
+        //  O(n + n) -> O(n)
+        //      - O(n) -> worst-case, the call stack can have "n" calls, when the tree is completely unbalanced
+        //      - O(n) -> visited list join
+        public static string DFSRecursivePreOrder(Node root)
         {
             var visited = new List<string>();
-            Action<Node?>? func = null;
             
-            func = (Node? root) =>
+            void dfs(Node? root)
             {
                 if (root == null)
                 {
@@ -51,19 +24,27 @@ namespace Dsa
                 visited.Add(root.SKey);
                 if (root.Left != null)
                 {
-                    func!(root.Left);
+                    dfs(root.Left);
                 }
                 if (root.Right != null)
                 {
-                    func!(root.Right);
+                    dfs(root.Right);
                 }
             };
 
-            func(root);
+            dfs(root);
             return string.Join(",", visited);
         }
 
-        public static string DFSStack(Node root)
+        // Time complexity:
+        //  O(n + n) -> O(n)
+        //      - O(n) need to go thru all the tree nodes
+        //      - O(n) -> visited list join
+        // Space complexity: 
+        //  O(n + n) -> O(n)
+        //      - O(n) -> worst-case, the call stack can have "n" calls, when the tree is completely unbalanced
+        //      - O(n) -> visited list join
+        public static string DFSStackPreOrder(Node root)
         {
             var stack = new Stack<Node>();
             stack.Push(root);
@@ -87,8 +68,27 @@ namespace Dsa
             return string.Join(",", result);
         }
 
-        // stack |
-        // output: a,b,d,e,g,c,f
+        public static string DFSRecursivePostOrder(Node root)
+        {
+            var result = new List<string>();
+
+            void dfs(Node root)
+            {
+                if (root.Left != null)
+                {
+                    dfs(root.Left);
+                }
+                if (root.Right != null)
+                {
+                    dfs(root.Right);
+                }
+
+                result.Add(root.SKey);
+            }
+
+            dfs(root);
+            return string.Join(",", result);
+        }
 
         public static void MainBinaryTree()
         {
