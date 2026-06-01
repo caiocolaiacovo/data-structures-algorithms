@@ -90,6 +90,29 @@ namespace Dsa
             return string.Join(",", result);
         }
 
+        public static string DFSRecursiveInOrder(Node root)
+        {
+            var result = new List<int>();
+
+            void dfs(Node root)
+            {
+                if (root.Left != null)
+                {
+                    dfs(root.Left);
+                }
+                
+                result.Add(root.IKey);
+                
+                if (root.Right != null)
+                {
+                    dfs(root.Right);
+                }
+            }
+
+            dfs(root);
+            return string.Join(",", result);
+        }
+
         public static void MainBinaryTree()
         {
             var a = new Node("a");

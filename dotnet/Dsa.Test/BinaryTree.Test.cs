@@ -67,4 +67,38 @@ public class BinaryTreeTest
 
         Assert.Equal(expected, outputRecursive);
     }
+
+    [Fact]
+    public void Should_traverse_dfs_in_order()
+    {
+        /*
+             10
+           /   \
+          7     12
+           \   /  \
+           9  11   25
+                  /  \
+                24    99
+        */
+        var a = new Node(10);
+        var b = new Node(7);
+        var c = new Node(12);
+        var d = new Node(9);
+        var e = new Node(11);
+        var f = new Node(25);
+        var g = new Node(24);
+        var h = new Node(99);
+        a.Left = b;
+        a.Right = c;
+        b.Right = d;
+        c.Left = e;
+        c.Right = f;
+        f.Left = g;
+        f.Right = h;
+        var expected = "7,9,10,11,12,24,25,99";
+
+        var outputRecursive = BinaryTree.DFSRecursiveInOrder(a);
+
+        Assert.Equal(expected, outputRecursive);
+    }
 }
